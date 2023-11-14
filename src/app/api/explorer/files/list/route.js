@@ -20,6 +20,10 @@ export async function GET(req) {
 
 async function getDriveContent(drivePath) {
   try {
+    if (!drivePath.includes("/") || !drivePath.includes("\\")) {
+      drivePath += "/";
+    }
+
     const fullPath = path.join(drivePath);
     const items = await fs.promises.readdir(fullPath);
     const result = [];
@@ -29,6 +33,7 @@ async function getDriveContent(drivePath) {
       const stats = await fs.statSync(itemPath);
 
       result.push({
+        path: itemPath.replace("\\", "/"),
         name: item,
         isDirectory: stats.isDirectory(),
       });
