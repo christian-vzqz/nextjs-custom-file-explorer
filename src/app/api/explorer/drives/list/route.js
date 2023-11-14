@@ -8,7 +8,9 @@ export async function GET(req) {
   const driveList = await list();
   const usbDrives = driveList.filter((drive) => drive.isUSB);
   const drives = usbOnly === "true" ? usbDrives : driveList;
-  const mountpoints = drives.flatMap((d) => d.mountpoints.map((mp) => mp));
+  const mountpoints = drives.flatMap((d) =>
+    d.mountpoints.map((mp) => ({ ...mp, isUSB: d.isUSB }))
+  );
 
   return NextResponse.json(mountpoints, { status: 200 });
 }
