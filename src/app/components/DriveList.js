@@ -3,7 +3,7 @@
 import { FaLaptop, FaUsb, FaAngleRight } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-export default function DriveList({ content, onSelect }) {
+export default function DriveList({ content = [], onSelect = () => {} }) {
   return (
     <>
       <ul className="max-w-md divide-y divide-gray-200">
@@ -39,13 +39,3 @@ export default function DriveList({ content, onSelect }) {
     </>
   );
 }
-
-DriveList.propTypes = {
-  content: PropTypes.array,
-  onSelect: PropTypes.func,
-};
-
-DriveList.defaultProps = {
-  content: [],
-  onSelect: () => {},
-};

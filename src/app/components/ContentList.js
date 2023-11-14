@@ -3,7 +3,7 @@
 import { FaFolder, FaFile, FaAngleRight } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-export default function ContentList({ content }) {
+export default function ContentList({ content = [] }) {
   return (
     <>
       <ul className="max-w-md divide-y divide-gray-200">
@@ -36,8 +36,4 @@ export default function ContentList({ content }) {
 
 ContentList.propTypes = {
   content: PropTypes.array,
-};
-
-ContentList.defaultProps = {
-  content: [],
 };
